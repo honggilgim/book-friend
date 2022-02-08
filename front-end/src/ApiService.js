@@ -16,8 +16,12 @@ class ApiService {
     return axios.delete(USER_API_BASE_URL + '/' + bookID);
   }
   
-  addBook(book){
-    return axios.post(USER_API_BASE_URL, book);
+  addrequest(request){
+    return axios.post(USER_API_BASE_URL + '/req', request);
+  }
+
+  addLike(like){
+    return axios.post(USER_API_BASE_URL + '/lik', like);
   }
 
   editBook(book){

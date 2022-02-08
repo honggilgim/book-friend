@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
  
 import com.example.demo.mapper.BookMapper;
 import com.example.demo.vo.BookVO;
+import com.example.demo.vo.RequestVO;
+import com.example.demo.vo.LikeVO;
  
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -31,9 +33,15 @@ public class BookController {
         return bookMapper.bookList();
     }
     
-    @PostMapping
-    void insertBook(@RequestBody BookVO book) {
-        bookMapper.insertBook(book);
+    @PostMapping("/req")
+    void insertRequest(@RequestBody RequestVO request) {
+        bookMapper.insertRequest(request);
+        System.out.println("유저 DB 저장 성공");
+    }
+    
+    @PostMapping("/lik")
+    void insertLike(@RequestBody LikeVO like) {
+        bookMapper.insertLike(like);
         System.out.println("유저 DB 저장 성공");
     }
     
@@ -45,7 +53,7 @@ public class BookController {
     }
         
     @PutMapping("/{bid}")
-    public void updateUser(@PathVariable int bid, @RequestBody BookVO book) {
+    public void updateBook(@PathVariable int bid, @RequestBody BookVO book) {
         
     	BookVO updateBook = book;
         System.out.println("업데이트유저 => " + updateBook);

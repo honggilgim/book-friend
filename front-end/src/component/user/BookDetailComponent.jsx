@@ -31,7 +31,7 @@ class BookDetailComponent extends Component{
     this.loadBook();
   }
 
-  loadBook = () => {
+  loadBook = () => { //도서 정보 불러오기
     ApiService.fetchBookByID(window.localStorage.getItem("bookID"))
       .then( res => {
         let book = res.data;
@@ -57,28 +57,41 @@ class BookDetailComponent extends Component{
     });
   }
 
-  saveUser = (e) => {
+  saveRequest = (e) => { //도서 대출 요청 db 저장
     e.preventDefault();
 
-    let user = {
-      id: this.state.id,
-      password: this.state.password,
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      age: this.state.age,
-      salary: this.state.salary
+    let request = {
+      guid:this.state.uid,
+      tuid:1, //로그인 중인 user id
+      bid:this.state.bid
     }
 
-    ApiService.editUser(user)
-      .then( res => {
-        this.setState({
-          message : user.lastName + '님 정보가 수정되었습니다.'
-        })
-        this.props.history.push('/users');
-      })
-      .catch(err => {
-        console.log('saveUser() 에러', err);
-      })
+    ApiService.addrequest(request)
+    .then( res => {
+        
+        this.props.history.push('/book-detail');
+    })
+    .catch( err => {
+      console.log('saveRequest() 에러', err);
+    });
+  }
+
+  saveLike = (e) => { //찜하기 db 저장
+    e.preventDefault();
+
+    let like = {
+      uid:1, //로그인 중인 user id
+      bid:this.state.bid
+    }
+
+    ApiService.addLike(like)
+    .then( res => {
+        
+        this.props.history.push('/book-detail');
+    })
+    .catch( err => {
+      console.log('saveLike() 에러', err);
+    });
   }
 
   render(){
@@ -109,8 +122,8 @@ class BookDetailComponent extends Component{
           </TableBody>
         </Table>
 
-        <Button variant="contained" color="primary" onClick={this.saveUser}>Save</Button>
-
+      <Button variant="contained" color="primary" onClick={this.saveRequest}>대출 신청</Button>
+      <Button variant="contained" color="primary" onClick={this.saveLike}>찜 하기</Button>
       </div>
     );
   }
