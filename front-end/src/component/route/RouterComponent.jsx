@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
-import BookListComponent from "../user/BookListComponent";
-import AddBookComponent from "../user/AddBookComponent";
-import BookDetailComponent from "../user/BookDetailComponent";
+import BookListComponent from "../book/BookListComponent";
+import AddBookComponent from "../book/AddBookComponent";
+import BookDetailComponent from "../book/BookDetailComponent";
+import MypageComponent from "../mypage/MypageComponent";
 
 const AppRouter = () => {
    return(
@@ -10,9 +11,10 @@ const AppRouter = () => {
        <BrowserRouter>
           <Switch>
             <Route exact path="/" component={BookListComponent} />
-            <Route path="/users" component={BookListComponent} />
+            <Route path="/books" component={BookListComponent} />
             <Route path="/book-detail" component={BookDetailComponent} />
             <Route path="/add-user" component={AddBookComponent} />
+            <Route path="/mypage" component={MypageComponent} />
           </Switch>
        </BrowserRouter>
      </div>

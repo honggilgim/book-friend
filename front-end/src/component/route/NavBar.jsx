@@ -7,6 +7,10 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
+const clickmp = () => {
+  document.location.href('/mypage')
+}
+
 const NavBar = () => {
   return(
     <div>
@@ -16,8 +20,11 @@ const NavBar = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" style={style}>
-            React User Application
+            Book friend
           </Typography>
+
+          <Button color="inherit" >Mypage</Button>
+          
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
