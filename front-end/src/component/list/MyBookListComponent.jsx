@@ -6,14 +6,13 @@ import Grid from '@material-ui/core/Grid';
 
 import { Box, Card, Typography, Stack } from '@mui/material';
 
-class BookListComponent extends Component{
+class MyBookListComponent extends Component{
 
   constructor(props){
     super(props);
 
     this.state = {
       books: [],
-      message: null
     }
   }
 
@@ -22,7 +21,7 @@ class BookListComponent extends Component{
   }
 
   reloadBookList = () => {
-    ApiService.fetchBooks()
+    ApiService.mybooklist(window.localStorage.getItem("uid"))
       .then( res => {
         this.setState({
           books: res.data
@@ -32,31 +31,10 @@ class BookListComponent extends Component{
         console.log('reloadBookList() Error!', err);
       })
   }
-
-  deleteUser = (userID) => {
-    ApiService.deleteUser(userID)
-      .then( res => {
-        this.setState({
-          message: 'User Deleted Successfully.'
-        });
-        this.setState({
-          users: this.state.books.filter( user =>
-            user.id !== userID)
-          });
-        })
-      .catch(err => {
-        console.log('deleteUser() Error!', err);
-      })
-  }
   
   BookDetail = (ID) => {
     window.localStorage.setItem("bookID", ID);
     this.props.history.push('/book-detail');
-  }
-
-  addUser = () => {
-    window.localStorage.removeItem("userID");
-    this.props.history.push('/add-user');
   }
 
   render(){
@@ -73,12 +51,12 @@ class BookListComponent extends Component{
     
       <div>
 
-    <Typography variant="h4" style={style}>Book List</Typography>&nbsp;&nbsp;
+    <Typography variant="h4" style={style}>나의 책 목록</Typography>&nbsp;&nbsp;
     <Grid container spacing={3} >
       {this.state.books.map((book) => (
         <Grid key={book.bid} item xs={12} sm={6} md={3}  onClick={()=> this.BookDetail(book.bid)}>
           <Card>
-            <Box sx={{ pt: '100%', position: 'relative' }}>
+            <Box sx={{ pt: '100%', position: 'relative' }}> 
               {book.btag && (
                <Typography >
                {book.btag}
@@ -126,5 +104,4 @@ const style = {
   display: 'flex',
   justifyContent: 'center'
 }
-
-export default BookListComponent;
+export default MyBookListComponent;

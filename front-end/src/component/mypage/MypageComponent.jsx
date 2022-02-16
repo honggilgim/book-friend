@@ -31,7 +31,15 @@ class MypageComponent extends Component{
           });
       }
 
-    
+    likelist = (ID) => {
+    window.localStorage.setItem("uid", ID);
+    this.props.history.push('/likelist');
+  }
+
+  mybook = (ID) => {
+    window.localStorage.setItem("uid", ID);
+    this.props.history.push('/mybooklist');
+  }
 
     render(){
 
@@ -63,29 +71,45 @@ class MypageComponent extends Component{
                   <Item style={{textAlign:"center"}}>알림 </Item>
                 </Grid>
                 <Grid item xs={12} sm={6} md={2}>
-                  <Item style={{textAlign:"center"}}>회원 정보 수정 </Item>
+                  <Item style={{textAlign:"center"}}onClick={()=>this.props.history.push('/edituser')} >
+                    회원 정보 수정 
+                  </Item>
                 </Grid>
                 <Grid item xs={12} sm={0} md={8}>
                 </Grid>
 
                 <Grid item xs={12} sm={6} md={4}>
-                  <Item style={{textAlign:"center"}}><img alt="mytake" style={imagestyle} src="img/mytake.png" /> <br></br>빌린책 </Item>
+                  <Item style={{textAlign:"center"}} onClick={()=>this.props.history.push('/borrowed-list')}>
+                    <img alt="mytake" style={imagestyle} src="img/mytake.png" /> 
+                    <br></br>빌린책 </Item>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
-                <Item style={{textAlign:"center"}}> <img alt="mygive" style={imagestyle} src="img/mygive.png" /> <br></br>빌려준책</Item>
+                <Item style={{textAlign:"center"}} onClick={()=>this.props.history.push('/borrow-list')}>
+                   <img alt="mygive" style={imagestyle} src="img/mygive.png" /> 
+                   <br></br>빌려준책</Item>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
-                <Item style={{textAlign:"center"}}> <img alt="mybook" style={imagestyle} src="img/mybook.png" /> <br></br>나의 책</Item>
+                <Item style={{textAlign:"center"}} onClick={()=> this.mybook(parseInt(1))}> 
+                  <img alt="mybook" style={imagestyle} src="img/mybook.png" /> 
+                  <br></br>나의 책
+                </Item>
                 </Grid>
 
                 <Grid item xs={12} sm={6} md={4}>
-                  <Item style={{textAlign:"center"}}> <img alt="myhaert" style={imagestyle} src="img/myheart.png" /> <br></br>찜목록</Item>
+                  <Item style={{textAlign:"center"}} onClick={()=> this.likelist(parseInt(1))}> 
+                    <img alt="myhaert" style={imagestyle} src="img/myheart.png" /> 
+                    <br></br>찜목록
+                  </Item>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
-                <Item style={{textAlign:"center"}}> <img alt="mylist" style={imagestyle} src="img/mylist.png" /> <br></br>요청목록</Item>
+                <Item style={{textAlign:"center"}} onClick={()=>this.props.history.push('/ask-list')}> 
+                  <img alt="mylist" style={imagestyle} src="img/mylist.png" /> 
+                  <br></br>요청목록</Item>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
-                <Item style={{textAlign:"center"}}> <img alt="mypoint" style={imagestyle} src="img/mypoint.png" /> <br></br>포인트 사용 내역</Item>
+                <Item style={{textAlign:"center"}} onClick={()=>this.props.history.push('/borrow-list')}> 
+                  <img alt="mypoint" style={imagestyle} src="img/mypoint.png" /> 
+                  <br></br>포인트 사용 내역</Item>
                 </Grid>
 
                 <Grid item xs={12} sm={6} md={9}>

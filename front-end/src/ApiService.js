@@ -15,7 +15,9 @@ class ApiService {
   deleteBook(bookID){
     return axios.delete(USER_API_BASE_URL + '/' + bookID);
   }
-  
+  mybooklist(uid){
+    return axios.get(USER_API_BASE_URL + '/mybook/' + uid)
+  }
   addrequest(request){
     return axios.post(USER_API_BASE_URL + '/req', request);
   }
@@ -28,6 +30,13 @@ class ApiService {
     return axios.put(USER_API_BASE_URL + '/' + book.bid, book)
   }
 
+  likelist(uid){
+    return axios.get(USER_API_BASE_URL + '/like/' + uid)
+  }
+
+  mybooklist(uid){
+    return axios.get(USER_API_BASE_URL + '/mybook/' + uid)
+  }
 }
 
 export default new ApiService();

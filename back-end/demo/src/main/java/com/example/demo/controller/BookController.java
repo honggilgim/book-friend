@@ -33,6 +33,20 @@ public class BookController {
         return bookMapper.bookList();
     }
     
+    @GetMapping("/{bid}")
+    public BookVO fetchBookByID(@PathVariable int bid) {
+        System.out.println(bookMapper.fetchBookByID(bid));
+        BookVO fetchBook = bookMapper.fetchBookByID(bid);
+        return fetchBook;
+    }
+    
+    @GetMapping("mybook/{uid}")
+    public List<BookVO> mybookList(@PathVariable int uid){
+        System.out.println(bookMapper.bookList());
+        System.out.println("찜리스트 출력 성공");
+        return bookMapper.mybookList(uid);
+    }
+    
     @PostMapping("/req")
     void insertRequest(@RequestBody RequestVO request) {
         bookMapper.insertRequest(request);
@@ -45,22 +59,13 @@ public class BookController {
         System.out.println("유저 DB 저장 성공");
     }
     
-    @GetMapping("/{bid}")
-    public BookVO fetchBookByID(@PathVariable int bid) {
-        System.out.println(bookMapper.fetchBookByID(bid));
-        BookVO fetchBook = bookMapper.fetchBookByID(bid);
-        return fetchBook;
+    @GetMapping("like/{uid}")
+    public List<BookVO> likeList(@PathVariable int uid){
+        System.out.println(bookMapper.bookList());
+        System.out.println("찜리스트 출력 성공");
+        return bookMapper.likeList(uid);
     }
         
-    @PutMapping("/{bid}")
-    public void updateBook(@PathVariable int bid, @RequestBody BookVO book) {
-        
-    	BookVO updateBook = book;
-        System.out.println("업데이트유저 => " + updateBook);
-
-        
-        bookMapper.updateBook(updateBook); 
-    }
     
     @DeleteMapping("/{bid}")
     public void deleteBook(@PathVariable int bid) {
