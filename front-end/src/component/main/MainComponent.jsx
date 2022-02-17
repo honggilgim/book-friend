@@ -30,31 +30,41 @@ class MainComponent extends Component{
           };
 
           const bg = {
-            background: 'url(/img/main.jpg)',
-            width: '100vh',
-            height: '100vh',
-
+            background: 'url(/img/main3.jpg)',
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: 70,
+            bottom: 0,
             backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat'
+            backgroundRepeat: 'no-repeat',
+            zIndex: -2,
+          }
+
+          const box ={
+            textAlign:'center', 
+            background:'rgba(255, 255, 255, 0.54)',
+            fontWeight: "bold"
           }
 
         return(
             <section style={bg}>
             <Container maxWidth="xl" >
               <Box sx={{ pb: 5 }}>
+                <br></br><br></br>
                 <Typography style={title} variant="h2">Book Friend</Typography>
               </Box>  <br></br><br></br><br></br><br></br>
               <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} md={6}>
-                  <Item style={{textAlign:"center"}}>
+                <Grid item xs={12} sm={6} md={6} >
+                  <Item style={box}>
                     <img alt="mytake" style={imagestyle} src="img/mytake.png" onClick={()=>this.props.history.push('/books')}/>
-                    <br></br>책빌리기 
+                      <br></br>책 빌리기
                   </Item>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6}>
-                <Item style={{textAlign:"center"}}>
+                <Item style={box}>
                  <img alt="mygive" style={imagestyle} src="img/mygive.png" onClick={()=>this.props.history.push('/book-post')}/>
-                 <br></br>책빌려주기
+                 <br></br>책 빌려주기
                 </Item>
                 </Grid>  
               </Grid>

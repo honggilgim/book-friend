@@ -15,6 +15,7 @@ class BookListComponent extends Component{
       books: [],
       message: null
     }
+
   }
 
   componentDidMount(){
@@ -71,12 +72,13 @@ class BookListComponent extends Component{
 
     return(
     
-      <div>
+    <div>
 
     <Typography variant="h4" style={style}>Book List</Typography>&nbsp;&nbsp;
+    <hr></hr><br></br>
     <Grid container spacing={3} >
       {this.state.books.map((book) => (
-        <Grid key={book.bid} item xs={12} sm={6} md={3}  onClick={()=> this.BookDetail(book.bid)}>
+        <Grid ref={this.Grid} key={book.bid} item xs={12} sm={6} md={3}  onClick={()=> this.BookDetail(book.bid)}  >
           <Card>
             <Box sx={{ pt: '100%', position: 'relative' }}>
               {book.btag && (
@@ -124,7 +126,9 @@ class BookListComponent extends Component{
 
 const style = {
   display: 'flex',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  marginTop: 60,
+  marginBottom: 25
 }
 
 export default BookListComponent;

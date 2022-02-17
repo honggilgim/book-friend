@@ -15,6 +15,11 @@ function checkbox() {
     <Typography variant="h4" style={style}>설문조사 페이지입니다.</Typography>
     <br></br>
     <br></br>
+    <br></br>
+    <hr></hr>
+    <br></br>
+    <br></br>
+    <br></br>
     <div>
     <Typography variant="h6" style={style}>Q1. 책 상태가 손상되었나요?</Typography>
     <div style={style}>
@@ -60,7 +65,7 @@ function checkbox() {
 
     <br></br>
     <div style= {style}>
-    <Button variant="contained" color="primary" size = "large">Submit</Button>
+    <Button variant="contained" color="primary" size = "large" >Submit</Button>
     </div>
     </>
     

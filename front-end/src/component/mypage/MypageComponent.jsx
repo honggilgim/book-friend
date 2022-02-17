@@ -63,12 +63,12 @@ class MypageComponent extends Component{
               <Grid item xs={12} sm={12} md={12}>
                   <Item >
                       <p> 환영합니다! 김주희 회원님</p>
-                      <p>포인트 : 100p | 평점 : 100점</p>
+                      <p>포인트 : 100p | 온도 : 39도</p>
                   </Item>
                 </Grid>
 
                 <Grid item xs={12} sm={6} md={2}>
-                  <Item style={{textAlign:"center"}}>알림 </Item>
+                  <Item style={{textAlign:"center"}}onClick={()=>this.props.history.push('/alarm')}>알림 </Item>
                 </Grid>
                 <Grid item xs={12} sm={6} md={2}>
                   <Item style={{textAlign:"center"}}onClick={()=>this.props.history.push('/edituser')} >
@@ -107,7 +107,7 @@ class MypageComponent extends Component{
                   <br></br>요청목록</Item>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
-                <Item style={{textAlign:"center"}} onClick={()=>this.props.history.push('/borrow-list')}> 
+                <Item style={{textAlign:"center"}} onClick={()=>this.props.history.push('/point')}> 
                   <img alt="mypoint" style={imagestyle} src="img/mypoint.png" /> 
                   <br></br>포인트 사용 내역</Item>
                 </Grid>
@@ -115,7 +115,7 @@ class MypageComponent extends Component{
                 <Grid item xs={12} sm={6} md={9}>
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                  <Item style={{textAlign:"center"}}>신고 </Item>
+                  <Item style={{textAlign:"center"}} onClick={()=>this.props.history.push('/reportuser')}>신고 </Item>
                 </Grid>
                 
 

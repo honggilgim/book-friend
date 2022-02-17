@@ -13,9 +13,9 @@ import MainComponent from "../main/MainComponent";
 import MypageComponent from "../mypage/MypageComponent";
 import check from "../mypage/check";
 import EditUserComponent from "../user/EditUserComponent";
-
-
-
+import AlarmComponent from "../mypage/AlarmComponent";
+import ReportUserComponent from "../mypage/ReportUserComponent";
+import PointRecordListComponent from "../list/PointRecordListComponent";
 const AppRouter = () => {
    return(
      <div style={style}>
@@ -35,6 +35,9 @@ const AppRouter = () => {
             <Route path="/likelist" component={LikeBookListComponent} />
             <Route path="/mybooklist" component={MyBookListComponent} />
             <Route path="/edituser" component={EditUserComponent} />
+            <Route path="/alarm" component={AlarmComponent} />
+            <Route path="/reportuser" component={ReportUserComponent} />
+            <Route path="/point" component={PointRecordListComponent} />
           </Switch>
        </BrowserRouter>
      </div>

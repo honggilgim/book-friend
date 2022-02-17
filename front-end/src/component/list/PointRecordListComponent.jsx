@@ -6,20 +6,20 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import PropTypes from 'prop-types';
-import { makeStyles } from '@mui/styles';
-import Button from '@mui/material/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import { Container, Typography } from "@material-ui/core";
 
-function createData(name, borrowed, borrow, end) {
-    return { name, borrowed, borrow, end};
+function createData(name, borrowed, end) {
+    return { name, borrowed, end};
   }
 
   const rows = [
-    createData('물고기는 존재하지 않는다.', 'sifj1234', 'test', '2022.02.25'),
-    createData('불편한 편의점', '독서광1', 'test', '2022.02.25'),
-    createData('세븐 테크', '김홍길', 'test', '2022.02.25'),
-    createData('웰씽킹', '김민선', 'test', '2022.02.25'),
-    createData('어서 오세요. 휴남동 서점입니다.', '김주희', 'test', '2022.02.25'),
+    createData('빌림', '-200', '2022.02.25'),
+    createData('빌려줌', '200', '2022.02.25'),
+    createData('빌림', '-300', '2022.02.25'),
+    createData('빌려줌', '300', '2022.02.25'),
+    createData('빌려줌', '400', '2022.02.25'),
   ];
 
   const useStyles = makeStyles({
@@ -51,22 +51,22 @@ function createData(name, borrowed, borrow, end) {
     color: PropTypes.oneOf(['blue']).isRequired,
   };
 
-class borrowedlist extends Component{
+class PointRecordListComponent extends Component{
 
     render() {
         return (
-            
             <>
-            <Typography variant="h4" style={style}>빌린 책 리스트</Typography>
-            <hr></hr><br></br>
-            <Table sx={{ minWidth: 650 }} size="middle" aria-label="a dense table">
+            <Typography variant="h4" style={style}>포인트 사용 내역</Typography>
+            <Container>
+            <MyButton variant="contained" color="navy" size="large" >비우기</MyButton>
+            </Container>
+            <br></br>
+            <Table sx={{ minWidth: 550 }} size="middle" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>book name</TableCell>
-                        <TableCell align="right">borrowed</TableCell>
-                        <TableCell align="right">borrow</TableCell>
-                        <TableCell align="right">end day&nbsp;(g)</TableCell>
-                        <TableCell align="right"></TableCell>
+                        <TableCell>경위</TableCell>
+                        <TableCell align="middle">point change</TableCell>
+                        <TableCell align="middle">day&nbsp;(g)</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -78,27 +78,20 @@ class borrowedlist extends Component{
                             <TableCell component="th" scope="row">
                                 {row.name}
                             </TableCell>
-                            <TableCell align="right">{row.borrowed}</TableCell>
-                            <TableCell align="right">{row.borrow}</TableCell>
-                            <TableCell align="right">{row.end}</TableCell>
-                            <TableCell align="right"> 
-                            <MyButton variant="contained" color="blue" size="large" onClick={()=>this.props.history.push('/check')}>반납</MyButton>
-                            </TableCell>
+                            <TableCell align="middle">{row.borrowed}</TableCell>
+                            <TableCell align="middle">{row.end}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
             </>
         );
-    }
-    
+    }   
 }
 
 const style = {
     display: 'flex',
-    justifyContent: 'center',
-    marginTop: 60,
-    marginBottom: 25
+    justifyContent: 'center'
   }
 
-export default borrowedlist;
+export default PointRecordListComponent;

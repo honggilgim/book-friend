@@ -51,7 +51,8 @@ class MyBookListComponent extends Component{
     
       <div>
 
-    <Typography variant="h4" style={style}>나의 책 목록</Typography>&nbsp;&nbsp;
+    <Typography variant="h4" style={style}>나의 책 목록</Typography>
+    <hr></hr><br></br>
     <Grid container spacing={3} >
       {this.state.books.map((book) => (
         <Grid key={book.bid} item xs={12} sm={6} md={3}  onClick={()=> this.BookDetail(book.bid)}>
@@ -102,6 +103,8 @@ class MyBookListComponent extends Component{
 
 const style = {
   display: 'flex',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  marginTop: 60,
+  marginBottom: 25
 }
 export default MyBookListComponent;

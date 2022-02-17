@@ -58,15 +58,15 @@ class borrowlist extends Component{
             <>
             <Typography variant="h4" style={style}>빌려준 책 리스트</Typography>
             <Container>
-            <MyButton variant="contained" color="blue" size="large" onClick={()=>this.props.history.push('/check')}>완료</MyButton>
             </Container>
-            <br></br>
+            <hr></hr><br></br>
             <Table sx={{ minWidth: 550 }} size="middle" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
                         <TableCell>book name</TableCell>
                         <TableCell align="middle">borrow</TableCell>
                         <TableCell align="middle">end day&nbsp;(g)</TableCell>
+                        <TableCell align="middle"></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -80,6 +80,9 @@ class borrowlist extends Component{
                             </TableCell>
                             <TableCell align="middle">{row.borrowed}</TableCell>
                             <TableCell align="middle">{row.end}</TableCell>
+                            <TableCell align="right"> 
+                            <MyButton variant="contained" color="blue" size="large" onClick={()=>this.props.history.push('/check')}>완료</MyButton>
+                            </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
@@ -92,7 +95,9 @@ class borrowlist extends Component{
 
 const style = {
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: 60,
+    marginBottom: 25
   }
 
 export default borrowlist;

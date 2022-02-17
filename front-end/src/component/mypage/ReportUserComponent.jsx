@@ -49,12 +49,11 @@ import ReplayIcon from "@material-ui/icons/Replay";
 //Tabs
 import { withStyles } from "@material-ui/core/styles";
 
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
 
-class AskListComponent extends Component{
+
+class ReportUserComponent extends Component{
 
   constructor(props){
     super(props);
@@ -69,61 +68,67 @@ class AskListComponent extends Component{
       bplace: '',
       btime: ''
     }
+
+    this.state = {
+      image: null
+    }
+
+    this.state = {
+      file: '',
+      previewURL :''
+    }
   
   }
+
   
+
+  onChange = (e) => {
+    this.setState({
+      [e.target.bid] : e.target.value
+    });
+  }
+
+   
+  
+ 
+  
+
   render(){
-    let profile_preview = null;
-    if(this.state.file !== ''){
-      profile_preview = <img className='profile_preview' src={this.state.previewURL }></img>
-    }
-    const imagestyle = {
-      height: "500px",  
-            width: "500px",
-                };
+
+    
+    
     
     return(
       <div>
-        <Typography variant="h4" style={style}>요청 목록</Typography>
-        <hr></hr><br></br>
-        <Grid container justifyContent="flex-end">
-        </Grid>
-        <Table>
-          <TableBody>
-              <TableRow>
-                <TableCell align="left" >{this.state.btitle}책 제목</TableCell>
-                <TableCell align="center">{this.state.btag}유저 </TableCell>
-                <TableCell align="right" ><Checkbox  /></TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell align="left" >{this.state.btitle}책 제목</TableCell>
-                <TableCell align="center">{this.state.btag}유저 </TableCell>
-                <TableCell align="right" ><Checkbox  /></TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell align="left" >{this.state.btitle}책 제목</TableCell>
-                <TableCell align="center">{this.state.btag}유저</TableCell>
-                <TableCell align="right" ><Checkbox  /></TableCell>
-              </TableRow>
-          </TableBody>
-        </Table>
+        <Typography variant="h4" style={style}>Report</Typography>
         <br></br>
         <Grid container justifyContent="center">
-          <Button variant="contained" color="primary" onClick={this.mypage}> 수락 </Button>
+        <div><TextField id="outlined-basic" label="신고할 유저" variant="outlined" /></div>
+        <br></br>
         </Grid>
         <br></br>
+        <Grid container justifyContent="center">
+        <div><TextField
+            id="outlined-multiline-static"
+            label="신고 내용"
+            multiline
+            rows={4}
+            defaultValue="신고 내용"
+        /></div>
+        </Grid>
+        <br></br>
+        <Grid container justifyContent="center">
+        <Button variant="contained" color="primary" onClick={this.mypage}> 신고 </Button>
+        </Grid>
         
-        </div> 
-      
+      </div>
     );
   }
 }
 
 const style = {
   display: 'flex',
-  justifyContent: 'center',
-  marginTop: 60,
-  marginBottom: 25
+  justifyContent: 'center'
 }
 
-export default AskListComponent;
+export default ReportUserComponent;

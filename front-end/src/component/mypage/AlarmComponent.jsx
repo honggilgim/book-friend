@@ -10,16 +10,16 @@ import { makeStyles } from '@mui/styles';
 import Button from '@mui/material/Button';
 import { Container, Typography } from "@material-ui/core";
 
-function createData(name, borrowed, borrow, end) {
-    return { name, borrowed, borrow, end};
+function createData(name, borrowed, end) {
+    return { name, borrowed, end};
   }
 
   const rows = [
-    createData('물고기는 존재하지 않는다.', 'sifj1234', 'test', '2022.02.25'),
-    createData('불편한 편의점', '독서광1', 'test', '2022.02.25'),
-    createData('세븐 테크', '김홍길', 'test', '2022.02.25'),
-    createData('웰씽킹', '김민선', 'test', '2022.02.25'),
-    createData('어서 오세요. 휴남동 서점입니다.', '김주희', 'test', '2022.02.25'),
+    createData('책 대여 요청이 왔습니다.', 'user1', '2022.02.25'),
+    createData('책 대여가 승인되었습니다.', 'user2', '2022.02.25'),
+    createData('대여 온도가 상승했습니다.', 'user5', '2022.02.25'),
+    createData('책 대여 요청이 왔습니다.', 'user1', '2022.02.22'),
+    createData('책 대여 요청이 왔습니다.', 'user2', '2022.02.21'),
   ];
 
   const useStyles = makeStyles({
@@ -51,22 +51,22 @@ function createData(name, borrowed, borrow, end) {
     color: PropTypes.oneOf(['blue']).isRequired,
   };
 
-class borrowedlist extends Component{
+class borrowlist extends Component{
 
     render() {
         return (
-            
             <>
-            <Typography variant="h4" style={style}>빌린 책 리스트</Typography>
+            <Typography variant="h4" style={style}>알림</Typography>
+            <Container>
+            </Container>
             <hr></hr><br></br>
-            <Table sx={{ minWidth: 650 }} size="middle" aria-label="a dense table">
+            <Table sx={{ minWidth: 550 }} size="middle" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>book name</TableCell>
-                        <TableCell align="right">borrowed</TableCell>
-                        <TableCell align="right">borrow</TableCell>
-                        <TableCell align="right">end day&nbsp;(g)</TableCell>
-                        <TableCell align="right"></TableCell>
+                        <TableCell>알림내용</TableCell>
+                        <TableCell align="middle">유저 이름</TableCell>
+                        <TableCell align="middle">day&nbsp;(g)</TableCell>
+                        <TableCell align="middle">삭제</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -78,11 +78,10 @@ class borrowedlist extends Component{
                             <TableCell component="th" scope="row">
                                 {row.name}
                             </TableCell>
-                            <TableCell align="right">{row.borrowed}</TableCell>
-                            <TableCell align="right">{row.borrow}</TableCell>
-                            <TableCell align="right">{row.end}</TableCell>
-                            <TableCell align="right"> 
-                            <MyButton variant="contained" color="blue" size="large" onClick={()=>this.props.history.push('/check')}>반납</MyButton>
+                            <TableCell align="middle">{row.borrowed}</TableCell>
+                            <TableCell align="middle">{row.end}</TableCell>
+                            <TableCell align="middle"> 
+                            삭제
                             </TableCell>
                         </TableRow>
                     ))}
@@ -101,4 +100,4 @@ const style = {
     marginBottom: 25
   }
 
-export default borrowedlist;
+export default borrowlist;
