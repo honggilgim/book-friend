@@ -20,7 +20,6 @@ public interface BookMapper {
     void insertLike(LikeVO like);
     void deleteBook(int bid);
     void insertBook(BookVO book);
-    void insertReport(ReportVO report);
     void insertImage(ImageVO img);
 	ImageVO fetchImageByID(int bid);
 }

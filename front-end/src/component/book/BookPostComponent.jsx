@@ -78,6 +78,16 @@ class BookPostComponent extends Component{
     this.state = {
       formData:''
     };
+
+    this.state = {
+      books:'',
+      setBooks:''
+    }
+
+    this.state = {
+      query:'',
+      setQuery:''
+    }
   
   }
 
@@ -128,33 +138,13 @@ class BookPostComponent extends Component{
     }
 
     ApiService.addBook(book)
-    .catch( err => {
-      console.log('handleUpload() addBook에러', err);
-    });
-
-    event.preventDefault();
-    /*이미지 저장*/ 
-
-  var formData = new FormData();
-  formData.append('file', this.state.file)
-  formData.append('url', this.state.previewURL)
-    //this.state.formData.append('bid',this.state.bid)
-    const config = {
-      headers: {
-          'content-type': 'multipart/form-data'
-      }
-    }
-  
-    ApiService.addImage(formData,config)
     .then( res=>{
       this.props.history.push('/main');
     })
     .catch( err => {
-      console.log('handleUpload() addImage에러', err);
+      console.log('handleUpload() addBook에러', err);
     });
-
   }
-  
 
   handleFileOnChange = (event) => {
     event.preventDefault();
@@ -172,9 +162,23 @@ class BookPostComponent extends Component{
 
   saveFileImage = (event) => //사진 imageDB에 저장
   {
+  
+  }
+
+  
+  handleSearch = (event) => {
+    event.preventDefault();
     
+    let reader = new FileReader();
+    let file = event.target.files[0];
 
-
+    reader.onload = () => {
+      this.setState({
+        file : file,
+        previewURL : reader.result,
+      })
+    };
+    reader.readAsDataURL(file);
   }
 
   
@@ -211,6 +215,8 @@ class BookPostComponent extends Component{
             name='profile_img'
             onChange={this.handleFileOnChange}>
           </input>
+          <br></br>
+          <Button variant="contained" color="primary" onClick={this.handleSearch}> 책 찾기 </Button> 
           <br></br>
           <Button variant="contained" color="primary" onClick={this.handleUpload}> Upload </Button>  
           

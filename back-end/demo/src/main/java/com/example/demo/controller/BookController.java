@@ -88,12 +88,6 @@ public class BookController {
         System.out.println("책 DB 저장 성공");
     }
     
-    @PostMapping("/report")
-    void insertBook(@RequestBody ReportVO report) {
-        bookMapper.insertReport(report);
-        System.out.println("신고 DB 저장 성공");
-    }
-    
     @PostMapping("/saveImage")
     void insertImage(@RequestParam("file") MultipartFile multipartFile,String url) {
         File targetFile = new File(url + multipartFile.getOriginalFilename());
