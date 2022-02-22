@@ -115,7 +115,7 @@ class MypageComponent extends Component{
                 <Grid item xs={12} sm={6} md={9}>
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
-                  <Item style={{textAlign:"center"}}>신고 </Item>
+                  <Item style={{textAlign:"center"} }onClick={()=>this.props.history.push('/reportuser')}>신고 </Item>
                 </Grid>
                 
 

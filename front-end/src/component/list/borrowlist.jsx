@@ -86,8 +86,7 @@ class borrowlist extends Component{
             </Table>
             </>
         );
-    }
-    
+    }   
 }
 
 const style = {

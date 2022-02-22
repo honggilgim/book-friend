@@ -11,6 +11,7 @@ import borrowlist from "../list/borrowlist";
 import MyBookListComponent from "../list/MyBookListComponent";
 import MainComponent from "../main/MainComponent";
 import MypageComponent from "../mypage/MypageComponent";
+import ReportUserComponent from "../mypage/ReportUserComponent";
 import check from "../mypage/check";
 import EditUserComponent from "../user/EditUserComponent";
 
@@ -35,6 +36,7 @@ const AppRouter = () => {
             <Route path="/likelist" component={LikeBookListComponent} />
             <Route path="/mybooklist" component={MyBookListComponent} />
             <Route path="/edituser" component={EditUserComponent} />
+            <Route path="/reportuser" component={ReportUserComponent} />
           </Switch>
        </BrowserRouter>
      </div>

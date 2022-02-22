@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTDMapper3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.example.demo.mapper.ImageMapper">
+  
+     <insert id="insertImage" parameterType="com.example.demo.vo.ImageVO">
+          INSERT INTO image(bid,img)
+          VALUES(#{bid},#{img})
+     </insert>
+     
+     <select id="fetchImageByID" resultType="com.example.demo.vo.ImageVO"
+      parameterType="int">
+         SELECT * FROM image
+         WHERE bid = #{bid}
+     </select>
+     
+     
+     
+  </mapper>

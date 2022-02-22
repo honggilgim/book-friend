@@ -51,4 +51,14 @@
          )
          ORDER BY bid
      </select>
+     
+     <insert id="insertBook" parameterType="com.example.demo.vo.BookVO">
+          INSERT INTO bookpost(btitle,bphoto,btag,uid,bpoint,bplace,btime)
+          VALUES(#{btitle},#{bphoto},#{btag},#{uid},#{bpoint},#{bplace},#{btime})
+     </insert>
+     
+     <insert id="insertReport" parameterType="com.example.demo.vo.ReportVO">
+          INSERT INTO report(user,reason)
+          VALUES(#{user},#{reason})
+     </insert>
   </mapper>
