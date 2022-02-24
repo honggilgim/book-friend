@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTDMapper3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.RequestMapper">
+
+    <select id="requestList" resultType="com.example.demo.vo.RequestlistVO">
+        select rq.rqid, rq.bid, rq.tuid, rq.guid,  bp.btitle, users.username
+        from request_list AS rq
+        JOIN bookpost AS bp ON bp.bid = rq.bid
+        JOIN users ON users.id = rq.guid
+        where rq.guid = #{uid};
+    </select>
+
+    <delete id="deleteRequest" parameterType="int">
+        DELETE FROM request_list
+        WHERE rqid = #{rqid}
+    </delete>
+
+    <insert id="insertborrow" parameterType="com.example.demo.vo.borrowListVO">
+        INSERT INTO borrow_list(guid, tuid, bid)
+        VALUES(#{guid}, #{tuid}, #{bid})
+    </insert>
+
+    <select id="fetchUserByID" resultType="com.example.demo.vo.UserVO" parameterType="String">
+        SELECT * FROM users
+        WHERE username = #{username}
+    </select>
+
+
+
+</mapper>

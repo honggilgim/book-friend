@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/> <!-- 카멜케이스 적용 -->
+    </settings>
+
+<!--    <typeAliases>-->
+<!--        <typeAlias type="com.example.demo.vo.BookVO" alias="book"/> &lt;!&ndash; DTO클래스 alias 등록 &ndash;&gt;-->
+<!--    </typeAliases>-->
+
+    <mappers>
+        <mapper resource="mapper/BookMapper.xml" /> <!-- 매퍼 등록 -->
+        <mapper resource="mapper/AlarmMapper.xml" />
+        <mapper resource="mapper/IndexMapper.xml" />
+        <mapper resource="mapper/RequestMapper.xml" />
+        <mapper resource="mapper/UserMapper.xml" />
+    </mappers>
+</configuration>

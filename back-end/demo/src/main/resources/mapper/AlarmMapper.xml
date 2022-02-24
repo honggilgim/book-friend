@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTDMapper3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.AlarmMapper">
+
+    <select id="alarmList" resultType="com.example.demo.vo.AlarmVO">
+        SELECT * FROM alarm
+        WHERE uid=#{uid}
+        ORDER BY time desc
+    </select>
+
+    <delete id="deleteAlarm" parameterType="int">
+        DELETE FROM alarm
+        WHERE aid = #{aid}
+    </delete>
+
+    <insert id="insertAlarm" parameterType="com.example.demo.vo.AlarmVO">
+        INSERT INTO alarm(uid, bid, content)
+        VALUES(#{uid}, #{bid}, #{content})
+    </insert>
+
+</mapper>
