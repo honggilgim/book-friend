@@ -4,16 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.example.demo.mapper.BookMapper">
   
-      <insert id="insertRequest" parameterType="com.example.demo.vo.BookVO">
-          INSERT INTO request_list(guid, tuid, bid)
-          VALUES(#{guid}, #{tuid}, #{bid})
-      </insert>
-      
-      <insert id="insertLike" parameterType="com.example.demo.vo.BookVO">
-          INSERT INTO like_list(uid, bid)
-          VALUES(#{uid}, #{bid})
-      </insert>
-  
      <select id="bookList" resultType="com.example.demo.vo.BookVO">
          SELECT * FROM bookpost
          ORDER BY bid
@@ -35,5 +25,40 @@
          SET firstName = #{firstName}, lastName = #{lastName}, age = #{age}, salary = #{salary} 
          WHERE id = #{bid}
      </update>
-  
+  	
+  	<select id="mybookList" resultType="com.example.demo.vo.BookVO">
+         SELECT * FROM bookpost
+         WHERE uid=#{uid}
+         ORDER BY bid
+     </select>
+  	
+  	 <insert id="insertRequest" parameterType="com.example.demo.vo.BookVO">
+          INSERT INTO request_list(guid, tuid, bid)
+          VALUES(#{guid}, #{tuid}, #{bid})
+     </insert>
+      
+     <insert id="insertLike" parameterType="com.example.demo.vo.BookVO">
+          INSERT INTO like_list(uid, bid)
+          VALUES(#{uid}, #{bid})
+     </insert>
+  	
+  	 <select id="likeList" resultType="com.example.demo.vo.BookVO">
+         SELECT * FROM bookpost
+         where bid IN (
+         	select bid
+         	from like_list
+         	where uid=#{uid}
+         )
+         ORDER BY bid
+     </select>
+     
+     <insert id="insertBook" parameterType="com.example.demo.vo.BookVO">
+          INSERT INTO bookpost(btitle,bphoto,btag,uid,bpoint,bplace,btime)
+          VALUES(#{btitle},#{bphoto},#{btag},#{uid},#{bpoint},#{bplace},#{btime})
+     </insert>
+     
+     <insert id="insertReport" parameterType="com.example.demo.vo.ReportVO">
+          INSERT INTO report(user,reason)
+          VALUES(#{user},#{reason})
+     </insert>
   </mapper>
