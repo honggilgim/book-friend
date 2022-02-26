@@ -39,7 +39,9 @@ const NavBar = () => {
           <Link href="/mypage" underline="none" color="white">
             MYPAGE  
           </Link>
-          <Button style={{color : 'white'}} onClick={() => this.Click()}> LOGOUT </Button>
+          <Button style={{color : 'white'}} onClick={() => {localStorage.clear();
+          window.location.reload();
+          }}> LOGOUT </Button>
         </Toolbar>
       </AppBar>
     </div>
