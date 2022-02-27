@@ -40,16 +40,11 @@ class BookPostComponent extends Component {
     this.state = {
       file: '',
       previewURL: '',
-      formdata: ''
     }
 
     this.state = {
-      formData: ''
-    };
-
-    this.state = {
-      books: '',
-      setBooks: ''
+      maxbid: 0,
+      urlString:''
     }
 
     this.state = {
@@ -58,9 +53,6 @@ class BookPostComponent extends Component {
     }
 
   }
-
-
-
 
   onChange = (e) => {
     this.setState({
@@ -90,76 +82,6 @@ class BookPostComponent extends Component {
     });
   }
 
-
-  handleUpload = (event) => //책 db에 저장
-  {
-    event.preventDefault();
-
-
-    // window.localStorage.setItem("uid",6);//임시 테스트용
-    //유저 id 정보 불러오기
-    console.log("this.state.uid: " + this.state.uid);
-    this.setState({
-
-      uid: window.localStorage.getItem("uid")
-
-    });
-    console.log("this.state.uid: " + this.state.uid);
-    /*Add image*/
-
-    let maxbid;
-
-    ApiService.searchBid()
-      .then(res => {
-        let maxBook = res.data;
-        console.log(maxBook);
-        maxbid = maxBook.bid;
-        console.log(maxBook.bid);
-        maxbid++;
-        console.log(maxbid);
-        let temp = maxbid + ".jpg";
-        console.log(temp);
-
-        saveAs(this.state.file, temp);
-
-        temp = "img/" + temp;
-
-        this.setState({
-          bphoto: temp
-        });
-      })
-      .catch(err => {
-        console.log('findBid()', err);
-      });
-
-
-    /*Add book*/
-
-    console.log("bphoto:"+this.state.bphoto);
-
-    let book = {
-      btitle: this.state.btitle,
-      bphoto: "img/10.jpg",
-      btag: "대출가능",
-      uid: this.state.uid,
-      bpoint: this.state.bpoint,
-      bplace: this.state.bplace,
-      btime: this.state.btime
-    }
-    console.log("book: " + book);
-    console.log('bphoto' + this.state.bphoto);
-
-    ApiService.addBook(book)
-      .then(res => {
-        this.props.history.push('/');
-      })
-      .catch(err => {
-        console.log('handleUpload() addBook에러', err);
-      });
-
-
-  }
-
   handleFileOnChange = (event) => {
     event.preventDefault();
     let reader = new FileReader();
@@ -177,6 +99,60 @@ class BookPostComponent extends Component {
   downloadImage = (event) => //사진 imageDB에 저장
   {
     event.preventDefault();
+    /*Add image*/
+
+    ApiService.searchBid()
+      .then(res => {
+        console.log("bid:"+res.data.bid);
+        this.setState({
+          maxbid: res.data.bid
+        });
+        console.log("maxbid:"+this.state.maxbid);
+        let temp = res.data.bid + 1;
+        
+        this.setState({
+         bphoto: (temp+ ".jpg")
+         
+        });
+        window.localStorage.setItem("photo",temp+ ".jpg");//임시 테스트용
+        console.log("localstorage:"+window.localStorage.getItem("photo"));
+        console.log("setstate:"+this.state.bphoto);
+        
+      })
+      .catch(err => {
+        console.log('findBid()', err);
+      });
+
+      
+        
+      
+
+
+    //유저 id 정보 불러오기
+
+
+    /*Add book*/
+
+    let book = {
+      btitle: this.state.btitle,
+      bphoto:"img/"+window.localStorage.getItem("photo"),
+      btag: "대출가능",
+      uid: window.localStorage.getItem("uid"),
+      bpoint: this.state.bpoint,
+      bplace: this.state.bplace,
+      btime: this.state.btime
+    }
+    console.log("book: " + book);
+
+    ApiService.addBook(book)
+
+
+      .then(res => {
+        this.props.history.push('/main');
+      })
+      .catch(err => {
+        console.log('handleUpload() addBook에러', err);
+      });
 
 
   }
@@ -211,55 +187,34 @@ class BookPostComponent extends Component {
 
     return (
       <div>
-                <Typography variant="h4" style={style}>Book Post</Typography>
+        <Typography variant="h4" style={style}>Book Post</Typography>
 
-<Grid
-  container
-  spacing={0}
-  direction="column"
-  alignItems="center"
-  justifyContent="center"
->
+        <div><TextField ref="postname" id="outlined-basic" label="제목" variant="outlined" onChange={this.handlePostnameChange} /></div>
+        <br></br>
+        <div><TextField ref="point" id="outlined-basic" label="포인트" variant="outlined" onChange={this.handlePointChange} /></div>
+        <br></br>
+        <div><TextField ref="time" id="outlined-basic" label="시간" variant="outlined" onChange={this.handleTimeChange} /></div>
+        <br></br>
+        <div><TextField ref="place" id="outlined-basic" label="장소" variant="outlined" onChange={this.handlePlaceChange} /></div>
+        <br></br>
 
-  <div><TextField ref="postname" id="outlined-basic" label="제목" variant="outlined" onChange={this.handlePostnameChange} /></div>
-  <br></br>
-  <div><TextField ref="point" id="outlined-basic" label="포인트" variant="outlined" onChange={this.handlePointChange} /></div>
-  <br></br>
-  <div><TextField ref="time" id="outlined-basic" label="시간" variant="outlined" onChange={this.handleTimeChange} /></div>
-  <br></br>
-  <div><TextField ref="place" id="outlined-basic" label="장소" variant="outlined" onChange={this.handlePlaceChange} /></div>
-  <br></br>
-  </Grid>
+        <br></br>
 
-  <br></br>
+        <div>{profile_preview}
 
-  {profile_preview}
-
-
-  <Grid
-  container
-  spacing={0}
-  direction="column"
-  alignItems="center"
-  justifyContent="center"
->
-    <br></br>
-  
-  <input type='file'
-    accept='image/jpg'
-    name='profile_img'
-    onChange={this.handleFileOnChange}>
-  </input>
-  <br></br>
-  
-  <br></br>
-  <Button variant="contained" color="primary" onClick={this.handleUpload}> Upload </Button>
-  </Grid>
+          <br></br>
+        </div>
+        <input type='file'
+          accept='image/jpg'
+          name='profile_img'
+          onChange={this.handleFileOnChange}>
+        </input>
+        <br></br>
+        <Button variant="contained" color="primary" onClick={this.downloadImage}> Upload </Button>
+        <br></br>
 
 
-
-</div>
-
+      </div>
 
 
     );
