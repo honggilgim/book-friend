@@ -48,7 +48,10 @@ front-end : 프론트 엔드 파일들이 들어가 있습니다.
 
 
 마이페이지, 대여요청페이지
-<img width="400" alt="대여요청페이지" src="https://user-images.githubusercontent.com/48556879/184273730-a3924d4f-e376-4354-a634-7d8ff853489d.png"> <img width="400" alt="마이페이지" src="https://user-images.githubusercontent.com/48556879/184273732-ae73f781-6bd8-4c90-a1a0-d176e6b6a76e.png">
+
+
+<img width="400" alt="대여요청페이지" src="https://user-images.githubusercontent.com/48556879/184273730-a3924d4f-e376-4354-a634-7d8ff853489d.png"> 
+<img width="400" alt="마이페이지" src="https://user-images.githubusercontent.com/48556879/184273732-ae73f781-6bd8-4c90-a1a0-d176e6b6a76e.png">
 
 ### 간단 코드설명
 
